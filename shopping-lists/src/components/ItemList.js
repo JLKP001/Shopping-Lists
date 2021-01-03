@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles, Paper } from "@material-ui/core";
+import { Item } from "./Item";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,7 +12,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ItemList = () => {
+export const ItemList = ({ listData, setListData }) => {
   const classes = useStyles();
-  return <Paper className={classes.root}>My List</Paper>;
+  return (
+    <Paper className={classes.root}>
+      {listData.map((itemData) => {
+        return <Item key={itemData.id} itemData={itemData} />;
+      })}
+    </Paper>
+  );
 };
