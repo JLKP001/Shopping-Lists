@@ -14,8 +14,12 @@ const useStyles = makeStyles((theme) => ({
   title: { flexGrow: 1 },
 }));
 
-export const Header = () => {
+export const Header = ({ isDarkMode, setIsDarkMode }) => {
   const classes = useStyles();
+
+  const handleChangeDarkMode = (event) => {
+    setIsDarkMode(!isDarkMode);
+  };
 
   return (
     <AppBar position="static">
@@ -24,7 +28,12 @@ export const Header = () => {
         <Typography variant="h6" className={classes.title}>
           Shopping Lists
         </Typography>
-        <FormControlLabel control={<Switch />} label="Dark Mode" />
+        <FormControlLabel
+          control={
+            <Switch checked={isDarkMode} onChange={handleChangeDarkMode} />
+          }
+          label="Dark Mode"
+        />
       </Toolbar>
     </AppBar>
   );
