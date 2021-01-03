@@ -1,5 +1,6 @@
-import { makeStyles, Typography } from "@material-ui/core";
 import React from "react";
+import { makeStyles, Typography } from "@material-ui/core";
+import { ItemList } from "./ItemList";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,7 +14,8 @@ export const MainBody = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Typography variant="h3">Main Body</Typography>
+      <Typography variant="h3">My Shopping List</Typography>
+      <ItemList />
     </div>
   );
 };
