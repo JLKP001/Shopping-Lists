@@ -2,10 +2,9 @@ import React from "react";
 import {
   Card,
   CardContent,
+  Divider,
   Grid,
   IconButton,
-  List,
-  ListItem,
   makeStyles,
   Typography,
 } from "@material-ui/core";
@@ -19,7 +18,13 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(4),
     padding: theme.spacing(1),
   },
-  itemTitle: { display: "flex", flexDirection: "row" },
+  itemTitle: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  itemTitleText: {
+    textTransform: "capitalize",
+  },
   editButton: {
     marginRight: theme.spacing(1.5),
     backgroundColor: theme.palette.primary.light,
@@ -41,7 +46,9 @@ export const Item = ({ itemData }) => {
         <Grid container alignItems="center">
           <Grid item>
             <CardContent>
-              <Typography variant="h4">{itemData.name}</Typography>
+              <Typography variant="h4" className={classes.itemTitleText}>
+                {itemData.name}
+              </Typography>
             </CardContent>
           </Grid>
           <Grid item sm></Grid>
@@ -55,7 +62,8 @@ export const Item = ({ itemData }) => {
           </Grid>
         </Grid>
       </div>
-      <ItemSubList />
+      <Divider />
+      <ItemSubList items={itemData.ingredients} />
     </Card>
   );
 };
