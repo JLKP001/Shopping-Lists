@@ -6,7 +6,6 @@ import {
   Grid,
   IconButton,
   makeStyles,
-  Typography,
 } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -23,6 +22,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
   },
   itemTitleText: {
+    fontSize: "32px",
+    border: "none",
     textTransform: "capitalize",
   },
   editButton: {
@@ -37,8 +38,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Item = ({ itemData }) => {
+export const Item = ({ itemData, removeItem, renameItem }) => {
   const classes = useStyles();
+
+  const onNameChange = (event) => {
+    renameItem(itemData.id, event.target.value);
+  };
 
   return (
     <Card className={classes.root} elevation={5}>
@@ -46,9 +51,12 @@ export const Item = ({ itemData }) => {
         <Grid container alignItems="center">
           <Grid item>
             <CardContent>
-              <Typography variant="h4" className={classes.itemTitleText}>
-                {itemData.name}
-              </Typography>
+              <input
+                type="text"
+                value={itemData.name}
+                onChange={onNameChange}
+                className={classes.itemTitleText}
+              />
             </CardContent>
           </Grid>
           <Grid item sm></Grid>
@@ -56,7 +64,10 @@ export const Item = ({ itemData }) => {
             <IconButton className={classes.editButton}>
               <EditIcon />
             </IconButton>
-            <IconButton className={classes.deleteButton}>
+            <IconButton
+              className={classes.deleteButton}
+              onClick={() => removeItem(itemData.id)}
+            >
               <DeleteIcon />
             </IconButton>
           </Grid>
