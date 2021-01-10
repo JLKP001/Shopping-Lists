@@ -61,9 +61,6 @@ export const Item = ({ itemData, removeItem, renameItem }) => {
           </Grid>
           <Grid item sm></Grid>
           <Grid item>
-            <IconButton className={classes.editButton}>
-              <EditIcon />
-            </IconButton>
             <IconButton
               className={classes.deleteButton}
               onClick={() => removeItem(itemData.id)}
