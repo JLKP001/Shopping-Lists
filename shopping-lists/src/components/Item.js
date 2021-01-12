@@ -1,13 +1,14 @@
 import React from "react";
 import {
+  Button,
   Card,
   CardContent,
   Divider,
   Grid,
   IconButton,
   makeStyles,
+  Typography,
 } from "@material-ui/core";
-import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { ItemSubList } from "./ItemSubList";
 
@@ -25,6 +26,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "32px",
     border: "none",
     textTransform: "capitalize",
+    backgroundColor: "transparent",
+    color: "inherit",
   },
   editButton: {
     marginRight: theme.spacing(1.5),
@@ -36,9 +39,26 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.light,
     "& .MuiButton-label": { color: theme.palette.secondary.main },
   },
+  addButton: {
+    backgroundColor: `${
+      theme.palette.type === "dark"
+        ? theme.palette.grey[600]
+        : theme.palette.grey[200]
+    }`,
+    borderRadius: "12px",
+    padding: theme.spacing(0.5, 1.5),
+    marginTop: theme.spacing(2),
+    textTransform: "capitalize",
+  },
 }));
 
-export const Item = ({ itemData, removeItem, renameItem }) => {
+export const Item = ({
+  itemData,
+  removeItem,
+  renameItem,
+  addSubItem,
+  editSubItem,
+}) => {
   const classes = useStyles();
 
   const onNameChange = (event) => {
@@ -71,7 +91,20 @@ export const Item = ({ itemData, removeItem, renameItem }) => {
         </Grid>
       </div>
       <Divider />
-      <ItemSubList items={itemData.ingredients} />
+      <Button
+        className={classes.addButton}
+        onClick={() => {
+          addSubItem(itemData.id);
+        }}
+      >
+        <Typography variant="subtitle2">+ add item</Typography>
+      </Button>
+
+      <ItemSubList
+        parentId={itemData.id}
+        items={itemData.subList}
+        editSubItem={editSubItem}
+      />
     </Card>
   );
 };

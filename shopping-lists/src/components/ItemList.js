@@ -30,8 +30,8 @@ export const ItemList = ({ listData, setListData }) => {
     setListData([
       {
         id: generateId(listData),
-        name: "New Item",
-        ingredients: [],
+        name: "New Card",
+        subList: [],
       },
       ...listData,
     ]);
@@ -53,6 +53,43 @@ export const ItemList = ({ listData, setListData }) => {
     setListData(newListData);
   };
 
+  const addSubItem = (id) => {
+    const newListData = listData.map((item) => {
+      if (item.id !== id) {
+        return item;
+      } else {
+        return {
+          ...item,
+          subList: [
+            { id: generateId(item.subList), name: "new item", quantity: "0g" },
+            ...item.subList,
+          ],
+        };
+      }
+    });
+    setListData(newListData);
+  };
+
+  const editSubItem = (id, subId, newSubItem) => {
+    const newListData = listData.map((item) => {
+      if (item.id !== id) {
+        return item;
+      } else {
+        return {
+          ...item,
+          subList: item.subList.map((subItem) => {
+            if (subItem.id !== subId) {
+              return subItem;
+            } else {
+              return newSubItem;
+            }
+          }),
+        };
+      }
+    });
+    setListData(newListData);
+  };
+
   return (
     <Paper className={classes.root}>
       <Button className={classes.addButton} onClick={addItem}>
@@ -65,6 +102,8 @@ export const ItemList = ({ listData, setListData }) => {
             itemData={itemData}
             removeItem={removeItem}
             renameItem={renameItem}
+            addSubItem={addSubItem}
+            editSubItem={editSubItem}
           />
         );
       })}
