@@ -75,6 +75,20 @@ export const ItemList = ({ listData, setListData }) => {
     setListData(newListData);
   };
 
+  const removeSubItem = (id, subId) => {
+    const newListData = listData.map((item) => {
+      if (item.id !== id) {
+        return item;
+      } else {
+        return {
+          ...item,
+          subList: item.subList.filter((subItem) => subItem.id !== subId),
+        };
+      }
+    });
+    setListData(newListData);
+  };
+
   const editSubItem = (id, subId, newSubItem) => {
     const newListData = listData.map((item) => {
       if (item.id !== id) {
@@ -109,6 +123,7 @@ export const ItemList = ({ listData, setListData }) => {
             renameItem={renameItem}
             addSubItem={addSubItem}
             editSubItem={editSubItem}
+            removeSubItem={removeSubItem}
           />
         );
       })}

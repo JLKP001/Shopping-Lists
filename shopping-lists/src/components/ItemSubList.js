@@ -2,7 +2,12 @@ import React from "react";
 import { List, makeStyles } from "@material-ui/core";
 import { SubItem } from "./SubItem";
 
-export const ItemSubList = ({ parentId, items, editSubItem }) => {
+export const ItemSubList = ({
+  parentId,
+  items,
+  editSubItem,
+  removeSubItem,
+}) => {
   const onItemChange = (event, field, subId) => {
     const subItem = items.find((item) => item.id === subId);
 
@@ -25,6 +30,7 @@ export const ItemSubList = ({ parentId, items, editSubItem }) => {
             item={item}
             parentId={parentId}
             onItemChange={onItemChange}
+            removeSubItem={removeSubItem}
           />
         );
       })}

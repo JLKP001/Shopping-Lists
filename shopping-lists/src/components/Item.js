@@ -58,6 +58,7 @@ export const Item = ({
   renameItem,
   addSubItem,
   editSubItem,
+  removeSubItem,
 }) => {
   const classes = useStyles();
 
@@ -104,6 +105,7 @@ export const Item = ({
         parentId={itemData.id}
         items={itemData.subList}
         editSubItem={editSubItem}
+        removeSubItem={removeSubItem}
       />
     </Card>
   );

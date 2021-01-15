@@ -1,11 +1,12 @@
 import React from "react";
 import {
   Checkbox,
-  FormControlLabel,
   Grid,
+  IconButton,
   ListItem,
   makeStyles,
 } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,17 +30,24 @@ const useStyles = makeStyles((theme) => ({
     color: "inherit",
   },
   itemCheckbox: {
-    textAlign: "right",
+    textAlign: "left",
   },
 }));
 
-export const SubItem = ({ item, onItemChange }) => {
+export const SubItem = ({ item, parentId, onItemChange, removeSubItem }) => {
   const classes = useStyles();
 
   return (
     <ListItem className={classes.root}>
       <Grid container alignItems="center">
-        <Grid item sm={4}>
+        <Grid item className={classes.itemCheckbox}>
+          <Checkbox
+            color="primary"
+            checked={item.checked}
+            onChange={(e) => onItemChange(e, "checked", item.id)}
+          />
+        </Grid>
+        <Grid item sm={3}>
           <input
             type="text"
             value={item.name}
@@ -57,18 +65,16 @@ export const SubItem = ({ item, onItemChange }) => {
             size={3}
           />
         </Grid>
-        <Grid item sm={4} className={classes.itemCheckbox}>
-          <FormControlLabel
-            control={
-              <Checkbox
-                color="primary"
-                checked={item.checked}
-                onChange={(e) => onItemChange(e, "checked", item.id)}
-              />
-            }
-            label="Purchased"
-            labelPlacement="start"
-          />
+
+        <Grid item>
+          <IconButton
+            color="secondary"
+            onClick={() => {
+              removeSubItem(parentId, item.id);
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
         </Grid>
       </Grid>
     </ListItem>
