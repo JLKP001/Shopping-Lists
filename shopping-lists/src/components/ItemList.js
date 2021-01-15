@@ -61,7 +61,12 @@ export const ItemList = ({ listData, setListData }) => {
         return {
           ...item,
           subList: [
-            { id: generateId(item.subList), name: "new item", quantity: "0g" },
+            {
+              id: generateId(item.subList),
+              name: "new item",
+              quantity: "0g",
+              checked: false,
+            },
             ...item.subList,
           ],
         };
