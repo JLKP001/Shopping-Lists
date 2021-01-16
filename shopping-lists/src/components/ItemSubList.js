@@ -1,5 +1,5 @@
 import React from "react";
-import { List, makeStyles } from "@material-ui/core";
+import { List } from "@material-ui/core";
 import { SubItem } from "./SubItem";
 
 export const ItemSubList = ({

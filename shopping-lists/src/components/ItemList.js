@@ -6,9 +6,9 @@ import { generateId } from "../utils/generateId";
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: "auto",
-    marginTop: theme.spacing(5),
-    padding: theme.spacing(5),
-    width: "50%",
+    marginTop: theme.spacing(2),
+    padding: theme.spacing(2, 1),
+    width: "90%",
     height: "100%",
   },
   addButton: {

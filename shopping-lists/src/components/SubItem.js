@@ -10,12 +10,13 @@ import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingLeft: theme.spacing(5),
-    paddingRight: theme.spacing(5),
+    padding: "1vw",
+    paddingTop: "0px",
+    paddingBottom: "0px",
     "&:hover": { backgroundColor: theme.palette.grey[500] },
   },
   itemName: {
-    fontSize: "20px",
+    fontSize: "14px",
     border: "none",
     textTransform: "capitalize",
     backgroundColor: "transparent",
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   itemQuantity: {
     textAlign: "center",
-    fontSize: "16px",
+    fontSize: "12px",
     border: "none",
     textTransform: "capitalize",
     backgroundColor: "transparent",
@@ -47,7 +48,7 @@ export const SubItem = ({ item, parentId, onItemChange, removeSubItem }) => {
             onChange={(e) => onItemChange(e, "checked", item.id)}
           />
         </Grid>
-        <Grid item sm={3}>
+        <Grid item>
           <input
             type="text"
             value={item.name}
@@ -56,7 +57,7 @@ export const SubItem = ({ item, parentId, onItemChange, removeSubItem }) => {
             size={10}
           />
         </Grid>
-        <Grid item sm className={classes.itemQuantity}>
+        <Grid item xs className={classes.itemQuantity}>
           <input
             type="text"
             value={item.quantity}

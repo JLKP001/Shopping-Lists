@@ -31,7 +31,7 @@ export const Header = ({ isDarkMode, setIsDarkMode }) => {
             <ListAltIcon fontSize="large" className={classes.titleIcon} />
             <Typography variant="h6">Shopping Lists</Typography>
           </Grid>
-          <Grid item sm />
+          <Grid item xs />
           <Grid item>
             <FormControlLabel
               control={

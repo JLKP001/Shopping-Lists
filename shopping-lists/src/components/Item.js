@@ -14,7 +14,7 @@ import { ItemSubList } from "./ItemSubList";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: theme.spacing(3),
+    margin: theme.spacing(2),
     marginBottom: theme.spacing(4),
     padding: theme.spacing(1),
   },
@@ -23,21 +23,19 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
   },
   itemTitleText: {
-    fontSize: "32px",
+    fontSize: "20pt",
     border: "none",
     textTransform: "capitalize",
     backgroundColor: "transparent",
     color: "inherit",
   },
-  editButton: {
-    marginRight: theme.spacing(1.5),
-    backgroundColor: theme.palette.primary.light,
-    "& .MuiButton-label": { color: theme.palette.primary.main },
-  },
   deleteButton: {
     marginRight: theme.spacing(1),
     backgroundColor: theme.palette.secondary.light,
     "& .MuiButton-label": { color: theme.palette.secondary.main },
+  },
+  deleteIcon: {
+    fontSize: "14pt",
   },
   addButton: {
     backgroundColor: `${
@@ -77,16 +75,17 @@ export const Item = ({
                 value={itemData.name}
                 onChange={onNameChange}
                 className={classes.itemTitleText}
+                size={12}
               />
             </CardContent>
           </Grid>
-          <Grid item sm></Grid>
+          <Grid item xs></Grid>
           <Grid item>
             <IconButton
               className={classes.deleteButton}
               onClick={() => removeItem(itemData.id)}
             >
-              <DeleteIcon />
+              <DeleteIcon className={classes.deleteIcon} />
             </IconButton>
           </Grid>
         </Grid>
